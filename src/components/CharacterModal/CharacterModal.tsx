@@ -3,7 +3,6 @@ import { Character, Planet } from '../../services/api'
 import api from '../../services/api'
 import { formatDate } from '../../utils/formatDate'
 import { convertHeight } from '../../utils/convertHeight'
-import Loader from '../Loader/Loader'
 
 interface CharacterModalProps {
   character: Character

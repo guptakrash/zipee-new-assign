@@ -28,7 +28,6 @@ const Home = () => {
   const { logout } = useAuth()
   const { favorites, isFavorite } = useFavorites()
   const { recentlyViewed, addToRecentlyViewed } = useRecentlyViewed()
-  const { isDarkMode } = useTheme()
   
   const [characters, setCharacters] = useState<CharacterWithSpecies[]>([])
   const [loading, setLoading] = useState(true)

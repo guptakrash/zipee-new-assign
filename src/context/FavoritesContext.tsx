@@ -1,5 +1,4 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react'
-import { Character } from '../services/api'
 
 interface FavoritesContextType {
   favorites: string[]

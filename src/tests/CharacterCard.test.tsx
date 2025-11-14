@@ -1,7 +1,13 @@
-import { describe, it, expect, vi } from 'vitest'
+import React from 'react'
+import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import { userEvent } from '@testing-library/user-event'
 import CharacterCard from '../components/CharacterCard/CharacterCard'
+import { FavoritesProvider } from '../context/FavoritesContext'
+
+const renderWithProviders = (ui: React.ReactElement) => {
+  return render(<FavoritesProvider>{ui}</FavoritesProvider>)
+}
 
 describe('CharacterCard', () => {
   let mockOnClick: ReturnType<typeof vi.fn>
@@ -12,11 +18,12 @@ describe('CharacterCard', () => {
   })
 
   it('renders character card with name', () => {
-    render(
+    renderWithProviders(
       <CharacterCard
         name="Luke Skywalker"
         speciesName="Human"
         imageUrl="https://picsum.photos/400/300"
+        characterUrl="https://swapi.dev/api/people/1/"
         onClick={mockOnClick}
       />
     )
@@ -25,11 +32,12 @@ describe('CharacterCard', () => {
   })
 
   it('renders character card with image', () => {
-    render(
+    renderWithProviders(
       <CharacterCard
         name="Luke Skywalker"
         speciesName="Human"
         imageUrl="https://picsum.photos/400/300"
+        characterUrl="https://swapi.dev/api/people/1/"
         onClick={mockOnClick}
       />
     )
@@ -40,11 +48,12 @@ describe('CharacterCard', () => {
   })
 
   it('renders species name when provided', () => {
-    render(
+    renderWithProviders(
       <CharacterCard
         name="Luke Skywalker"
         speciesName="Human"
         imageUrl="https://picsum.photos/400/300"
+        characterUrl="https://swapi.dev/api/people/1/"
         onClick={mockOnClick}
       />
     )
@@ -53,11 +62,12 @@ describe('CharacterCard', () => {
   })
 
   it('does not render species name when not provided', () => {
-    render(
+    renderWithProviders(
       <CharacterCard
         name="Luke Skywalker"
         speciesName={null}
         imageUrl="https://picsum.photos/400/300"
+        characterUrl="https://swapi.dev/api/people/1/"
         onClick={mockOnClick}
       />
     )
@@ -68,11 +78,12 @@ describe('CharacterCard', () => {
 
   it('calls onClick when card is clicked', async () => {
     const user = userEvent.setup()
-    render(
+    renderWithProviders(
       <CharacterCard
         name="Luke Skywalker"
         speciesName="Human"
         imageUrl="https://picsum.photos/400/300"
+        characterUrl="https://swapi.dev/api/people/1/"
         onClick={mockOnClick}
       />
     )
@@ -85,18 +96,20 @@ describe('CharacterCard', () => {
   })
 
   it('renders multiple character cards correctly', () => {
-    render(
+    renderWithProviders(
       <>
         <CharacterCard
           name="Luke Skywalker"
           speciesName="Human"
           imageUrl="https://picsum.photos/400/300"
+          characterUrl="https://swapi.dev/api/people/1/"
           onClick={mockOnClick}
         />
         <CharacterCard
           name="Darth Vader"
           speciesName="Human"
           imageUrl="https://picsum.photos/400/301"
+          characterUrl="https://swapi.dev/api/people/4/"
           onClick={mockOnClick}
         />
       </>

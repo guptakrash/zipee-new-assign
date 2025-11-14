@@ -31,7 +31,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setToken(newToken)
   }
 
-  const login = async (username: string, password: string): Promise<boolean> => {
+  const login = async (_username: string, _password: string): Promise<boolean> => {
     // Mock authentication - accept any credentials
     // In real app, this would call an API
     await new Promise(resolve => setTimeout(resolve, 500)) // Simulate API call
